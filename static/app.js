@@ -1,40 +1,84 @@
 var CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 var CognitoUser = AmazonCognitoIdentity.CognitoUser;
-var AuthenticationDetails = AmazonCognitoIdentity.AuthenticationDetails;
+// var AuthenticationDetails = AmazonCognitoIdentity.AuthenticationDetails;
 
 var poolData = {
 	UserPoolId : 'eu-west-2_kRH36JClU', // Your user pool id here
 	ClientId : '5rhjmkq289jqca6enpse6c8972' // Your client id here
 };
 
-function signIn () {
+function displayMsg () {
+    var x = document.getElementById('button_msg');
+    console.log('sign in func');
+    x.textContent = 'Console Display Pressed!';
+}
+
+// function signInOld () {
+//     console.log('sign in func');
+//     var username = $('#sign_in_username').val();
+//     var password = $('#sign_in_password').val();
+
+//     var authenticationData = {
+//         Username : username,
+//         Password : password,
+//     };
+
+//     var authenticationDetails = new AuthenticationDetails(authenticationData);
+//     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+
+//     var userData = {
+//         Username : username,
+//         Pool : userPool
+//     };
+
+//     var cognitoUser = new CognitoUser(userData);
+//     cognitoUser.authenticateUser(authenticationDetails, {
+//         onSuccess: function (result) {
+//             console.log('Reached onSuccess!');
+//             window.location.href = "/welcome";
+//         },
+
+//         onFailure: function(err) {
+//             console.log('authenitcation failure!');
+//             alert(err);
+//         }
+
+//     });
+// }
+
+function signIn() {
+    console.log('sign in func');
     var username = $('#sign_in_username').val();
     var password = $('#sign_in_password').val();
 
     var authenticationData = {
-        Username : username,
-        Password : password,
+        Username : 'username',
+        Password : 'password',
     };
 
-    var authenticationDetails = new AuthenticationDetails(authenticationData);
-    var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
+    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
 
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     var userData = {
-        Username : username,
+        Username : 'username',
         Pool : userPool
     };
-
-    var cognitoUser = new CognitoUser(userData);
+    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            window.location.href = "/welcome";
+            console.log('Reached onSuccess!');
+            var accessToken = result.getAccessToken().getJwtToken();
+            /* Use the idToken for Logins Map when Federating User Pools with identity pools or when passing through an Authorization Header to an API Gateway Authorizer */
+            var idToken = result.idToken.jwtToken;
         },
 
         onFailure: function(err) {
+            console.log('authenitcation failure!');
+            console.log('remove me later' + username + ' ' + password);
             alert(err);
-        }
+        },
 
-    });
+});
 }
 
 function register () {

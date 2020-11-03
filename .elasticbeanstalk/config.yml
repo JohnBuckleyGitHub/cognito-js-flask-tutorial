@@ -1,11 +1,15 @@
 branch-defaults:
   master:
-    environment: cognito-tutorial5
+    environment: cog-flask9
     group_suffix: null
+environment-defaults:
+  cog-flask7:
+    branch: null
+    repository: null
 global:
-  application_name: cognito-tutorial5
+  application_name: cog-flask9
   branch: null
-  default_ec2_keyname: null
+  default_ec2_keyname: aws-eb
   default_platform: Python 3.7
   default_region: eu-west-2
   include_git_submodules: true

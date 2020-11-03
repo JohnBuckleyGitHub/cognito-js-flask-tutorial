@@ -5,12 +5,14 @@
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <h2>Velosense</h2>
+                <h2>Velosense Online Data View</h2>
+                <h4>V 0.1.11</h4>
             </div>
             <div class="col-sm-4">
                 <div>
@@ -33,6 +35,16 @@
                         </button>
                     </form>
                 </div>
+                <div>
+                    <h2></h2>
+                    <button type="button" class="btn btn-primary btn-block"
+                                onclick="displayMsg();">
+                            Console Display
+                        </button>
+                </div>
+                <div>
+                    <h3 id="button_msg"></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -44,5 +56,7 @@
     <script src="{{ url_for('static',
             filename='amazon-cognito-identity.min.js') }}"></script>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='test.js') }}"></script>
+
 </body>
 </html>

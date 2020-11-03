@@ -3,7 +3,7 @@ var jwkToPem = require('jwk-to-pem');
 
 //url: 'https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json'
 request({
-    url: 'https://cognito-idp.us-east-2.amazonaws.com/us-east-2_I1ZQrSsWb/.well-known/jwks.json',
+    url: 'https://cognito-idp.eu-west-2.amazonaws.com/eu-west-2_kRH36JClU/.well-known/jwks.json',
     json: true
 }, function (error, response, body) {
     if (!error && response.statusCode === 200) {
