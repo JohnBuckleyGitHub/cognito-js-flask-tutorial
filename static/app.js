@@ -13,39 +13,6 @@ function displayMsg () {
     x.textContent = 'Console Display Pressed!';
 }
 
-// function signInOld () {
-//     console.log('sign in func');
-//     var username = $('#sign_in_username').val();
-//     var password = $('#sign_in_password').val();
-
-//     var authenticationData = {
-//         Username : username,
-//         Password : password,
-//     };
-
-//     var authenticationDetails = new AuthenticationDetails(authenticationData);
-//     var userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool(poolData);
-
-//     var userData = {
-//         Username : username,
-//         Pool : userPool
-//     };
-
-//     var cognitoUser = new CognitoUser(userData);
-//     cognitoUser.authenticateUser(authenticationDetails, {
-//         onSuccess: function (result) {
-//             console.log('Reached onSuccess!');
-//             window.location.href = "/welcome";
-//         },
-
-//         onFailure: function(err) {
-//             console.log('authenitcation failure!');
-//             alert(err);
-//         }
-
-//     });
-// }
-
 function signIn() {
     console.log('sign in func');
     var username = $('#sign_in_username').val();
