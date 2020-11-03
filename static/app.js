@@ -50,17 +50,18 @@ function signIn() {
     console.log('sign in func');
     var username = $('#sign_in_username').val();
     var password = $('#sign_in_password').val();
+    var new_password = $('#new_password').val();
 
     var authenticationData = {
-        Username : 'username',
-        Password : 'password',
+        Username : username,
+        Password : password,
     };
 
     var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
 
     var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     var userData = {
-        Username : 'username',
+        Username : username,
         Pool : userPool
     };
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
@@ -78,7 +79,21 @@ function signIn() {
             alert(err);
         },
 
-});
+        newPasswordRequired: () => {
+            cognitoUser.completeNewPasswordChallenge(
+                new_password,
+                {},
+                {
+                    onSuccess: (user) => {
+                        console.log('success', user);
+                    },
+                    onFailure: (error) => {
+                        console.log(error);
+                    },
+                },
+            );
+        }
+    });
 }
 
 function register () {

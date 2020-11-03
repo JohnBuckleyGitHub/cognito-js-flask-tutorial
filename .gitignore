@@ -5,3 +5,9 @@
 !.elasticbeanstalk/*.global.yml
 
 virt/
+venv/
+env/
+
+# Project files
+.idea/
+*.iml
